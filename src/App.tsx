@@ -55,7 +55,7 @@ function App() {
       <h1>Telegram mini games</h1>
       <div className="card">
         <button onClick={getAllRef}>Call Get All Ref API</button>
-        <button onClick={getAllRef}>Call Add Ref API</button>
+        <button onClick={saveRefCode}>Call Add Ref API</button>
         <p>
           <label>Telegram ID: {userInfo.tgId || '...'}</label>
         </p>
