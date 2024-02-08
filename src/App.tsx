@@ -65,6 +65,9 @@ function App() {
         <p>
           <label>Telegram Invited ID: {userInfo.invitedBy || '...'}</label>
         </p>
+        <p>
+          <label>Init Data: {JSON.stringify(WebApp?.initDataUnsafe)}</label>
+        </p>
       </div>
       <div className="card">
         <button onClick={counterHandler}>
