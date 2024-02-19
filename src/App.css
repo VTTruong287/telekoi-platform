@@ -37,6 +37,10 @@
   padding: 2em;
 }
 
+.card p {
+  max-width: 300px;
+}
+
 
 .card-flex-center {
   padding: 2em;

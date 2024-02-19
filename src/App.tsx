@@ -52,7 +52,7 @@ function App() {
 
   return (
     <>
-      <h1>Telegram mini games</h1>
+      <h1>Telegram mini games v2</h1>
       <div className="card">
         <button onClick={getAllRef}>Call Get All Ref API</button>
         <button onClick={saveRefCode}>Call Add Ref API</button>
