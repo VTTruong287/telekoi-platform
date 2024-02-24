@@ -14,6 +14,7 @@ type UserInfo = {
 function App() {
   const [count, setCount] = React.useState(0)
   const [userInfo, setUserInfo] = React.useState<UserInfo>({})
+  const [allRefCode, setAllRefCode] = React.useState('')
 
   const counterHandler = () => {
     const randomValue = 1 + Math.floor(Math.random() * 10)
@@ -38,12 +39,24 @@ function App() {
   const getAllRef = async () => {
     const rs = await apiService.reference?.getAllReference()
     console.log('rs: ', rs)
+
+    !!rs && setAllRefCode(JSON.stringify(rs))
   }
 
   const saveRefCode = async () => {
     if (userInfo && userInfo.tgId && userInfo.invitedBy) {
       const rs = await apiService.reference?.saveRefCode(userInfo.tgId?.toString(), userInfo.invitedBy);
-      console.log("rs: ", rs);
+      if (rs) {
+        WebApp.showPopup({
+          title: 'Save Ref Code',
+          message: 'SUCCESS'
+        })
+      } else {
+        WebApp.showPopup({
+          title: 'Save Ref Code',
+          message: 'FAIL'
+        })
+      }
     } else {
       // Prompt error
       console.log('saveRefCode --- Wrong input data')
@@ -52,10 +65,12 @@ function App() {
 
   return (
     <>
-      <h1>Telegram mini games v2</h1>
+      <h1>Telegram mini games v3</h1>
       <div className="card">
         <button onClick={getAllRef}>Call Get All Ref API</button>
+        <br />
         <button onClick={saveRefCode}>Call Add Ref API</button>
+        <br />
         <p>
           <label>Telegram ID: {userInfo.tgId || '...'}</label>
         </p>
@@ -68,11 +83,15 @@ function App() {
         <p>
           <label>Init Data: {JSON.stringify(WebApp?.initDataUnsafe)}</label>
         </p>
+        <p>
+          <label>All Ref Code: {allRefCode}</label>
+        </p>
       </div>
       <div className="card">
-        <button onClick={counterHandler}>
+        <button className='btn btn-primary' onClick={counterHandler}>
           Click to add random 1-10 
         </button>
+        <br />
         <p>
           <label>Total is {count}</label>
         </p>
