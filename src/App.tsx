@@ -4,6 +4,7 @@ import './App.css'
 import { TonConnectButton } from '@tonconnect/ui-react'
 import './App.css'
 import { apiService } from './api/api'
+import { validate } from '@tma.js/init-data-node'
 
 type UserInfo = {
   tgId?: number
@@ -15,6 +16,8 @@ function App() {
   const [count, setCount] = React.useState(0)
   const [userInfo, setUserInfo] = React.useState<UserInfo>({})
   const [allRefCode, setAllRefCode] = React.useState('')
+
+  const [validateErr, setValidateErr] = React.useState<any>(undefined)
 
   const counterHandler = () => {
     const randomValue = 1 + Math.floor(Math.random() * 10)
@@ -63,6 +66,33 @@ function App() {
     }
   }
 
+  const validateInitData = () => {
+    /*
+    Function will throw an error in one of these cases:
+    - auth_date should present integer
+    - auth_date is empty or not found
+    - hash is empty or not found
+    - Signature is invalid
+    - Init data expired
+    */
+   try {
+    const secretToken = "6884381091:AAFoEWqxT2NvaWP4zSu7CsGKpCXt6WhZ8j4";
+    const initData = WebApp?.initDataUnsafe
+    const initDataQuery =
+      `query_id=${initData?.query_id}` +
+      `&user=%7B%22id%22%3A${initData?.user?.id || ''}%2C%22first_name%22%3A%22${initData?.user?.first_name || ''}%22%2C%22last_name%22%3A%22${initData?.user?.last_name || ''}%22%2C%22username%22%3A%22${initData?.user?.username || ''}%22%2C%22language_code%22%3A%22${initData?.user?.language_code || ''}%22%2C%22is_premium%22%3A${initData?.user?.is_premium || ''}%7D` +
+      `&auth_date=${initData.auth_date}` +
+      `&hash=${initData?.hash}`;
+    validate(initDataQuery, secretToken);
+
+    return true;
+   } catch (error) {
+     console.log('ERR - validateInitData: ', error)
+     setValidateErr(JSON.stringify(error))
+     return false;
+   }
+  }
+
   return (
     <>
       <h1>Telegram mini games v3</h1>
@@ -70,6 +100,8 @@ function App() {
         <button onClick={getAllRef}>Call Get All Ref API</button>
         <br />
         <button onClick={saveRefCode}>Call Add Ref API</button>
+        <br />
+        <button onClick={validateInitData}>Validate Init Data</button>
         <br />
         <p>
           <label>Telegram ID: {userInfo.tgId || '...'}</label>
@@ -82,6 +114,9 @@ function App() {
         </p>
         <p>
           <label>Init Data: {JSON.stringify(WebApp?.initDataUnsafe)}</label>
+        </p>
+        <p>
+          <label>ERR Validation - Init Data: {validateErr}</label>
         </p>
         <p>
           <label>All Ref Code: {allRefCode}</label>
