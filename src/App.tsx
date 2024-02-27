@@ -76,7 +76,7 @@ function App() {
     - Init data expired
     */
    try {
-    const secretToken = "6884381091:AAFoEWqxT2NvaWP4zSu7CsGKpCXt6WhZ8j4";
+    const secretToken = import.meta.env.VITE_TELE_SECRET_TOKEN;
     const initData = WebApp?.initDataUnsafe
     const initDataQuery =
       `query_id=${initData?.query_id}` +
