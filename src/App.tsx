@@ -87,8 +87,11 @@ function App() {
 
     return true;
    } catch (error) {
-     console.log('ERR - validateInitData: ', error)
-     setValidateErr(JSON.stringify(error))
+    // @ts-ignore
+     console.log('ERR - validateInitData: ', error?.message)
+     console.log('ERR - validateInitData 2: ', JSON.stringify(error))
+
+     setValidateErr(error)
      return false;
    }
   }
@@ -116,7 +119,7 @@ function App() {
           <label>Init Data: {JSON.stringify(WebApp?.initDataUnsafe)}</label>
         </p>
         <p>
-          <label>ERR Validation - Init Data: {validateErr}</label>
+          <label>ERR Validation - Init Data: {`${JSON.stringify(validateErr)} - ${validateErr?.message}`}</label>
         </p>
         <p>
           <label>All Ref Code: {allRefCode}</label>
