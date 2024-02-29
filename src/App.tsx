@@ -82,7 +82,7 @@ function App() {
     const initData = WebApp?.initDataUnsafe
     const initDataQueryString =
       `query_id=${initData?.query_id}` +
-      `&user=%7B%22id%22%3A${initData?.user?.id || ''}%2C%22first_name%22%3A%22${initData?.user?.first_name || ''}%22%2C%22last_name%22%3A%22${initData?.user?.last_name || ''}%22%2C%22username%22%3A%22${initData?.user?.username || ''}%22%2C%22language_code%22%3A%22${initData?.user?.language_code || ''}%22%2C%22is_premium%22%3A${initData?.user?.is_premium || ''}%7D` +
+      `&user=%7B%22id%22%3A${initData?.user?.id || ''}%2C%22first_name%22%3A%22${initData?.user?.first_name || ''}%22%2C%22last_name%22%3A%22${initData?.user?.last_name || ''}%22%2C%22username%22%3A%22${initData?.user?.username || ''}%22%2C%22language_code%22%3A%22${initData?.user?.language_code || ''}%22%2C%22is_premium%22%3A${!!initData?.user?.is_premium}%7D` +
       `&auth_date=${initData.auth_date}` +
       `&hash=${initData?.hash}`;
       
