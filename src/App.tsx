@@ -17,6 +17,8 @@ function App() {
   const [userInfo, setUserInfo] = React.useState<UserInfo>({})
   const [allRefCode, setAllRefCode] = React.useState('')
 
+  const [initDataQuery, setInitDataQuery] = React.useState('')
+
   const [validateErr, setValidateErr] = React.useState<any>(undefined)
 
   const counterHandler = () => {
@@ -78,12 +80,14 @@ function App() {
    try {
     const secretToken = import.meta.env.VITE_TELE_SECRET_TOKEN;
     const initData = WebApp?.initDataUnsafe
-    const initDataQuery =
+    const initDataQueryString =
       `query_id=${initData?.query_id}` +
       `&user=%7B%22id%22%3A${initData?.user?.id || ''}%2C%22first_name%22%3A%22${initData?.user?.first_name || ''}%22%2C%22last_name%22%3A%22${initData?.user?.last_name || ''}%22%2C%22username%22%3A%22${initData?.user?.username || ''}%22%2C%22language_code%22%3A%22${initData?.user?.language_code || ''}%22%2C%22is_premium%22%3A${initData?.user?.is_premium || ''}%7D` +
       `&auth_date=${initData.auth_date}` +
       `&hash=${initData?.hash}`;
-    validate(initDataQuery, secretToken);
+    validate(initDataQueryString, secretToken);
+
+    setInitDataQuery(initDataQueryString);
 
     return true;
    } catch (error) {
@@ -117,6 +121,9 @@ function App() {
         </p>
         <p>
           <label>Init Data: {JSON.stringify(WebApp?.initDataUnsafe)}</label>
+        </p>
+        <p>
+          <label>Init Data Query: {`${initDataQuery}`}</label>
         </p>
         <p>
           <label>ERR Validation - Init Data: {`${JSON.stringify(validateErr)} - ${validateErr?.message}`}</label>
