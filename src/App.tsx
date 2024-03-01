@@ -6,6 +6,8 @@ import './App.css'
 import { apiService } from './api/api'
 import { validate } from '@tma.js/init-data-node'
 
+// import { createHmac } from 'crypto';
+
 type UserInfo = {
   tgId?: number
   tgUserName?: string
@@ -78,19 +80,24 @@ function App() {
     - Init data expired
     */
    try {
-    const secretToken = import.meta.env.VITE_TELE_SECRET_TOKEN;
+    const secretToken = "6884381091:AAFoEWqxT2NvaWP4zSu7CsGKpCXt6WhZ8j4"; //import.meta.env.VITE_TELE_SECRET_TOKEN;
     const initData = WebApp?.initDataUnsafe
-    const initDataQueryString =
-      `query_id=${initData?.query_id}` +
-      `&user=%7B%22id%22%3A${initData?.user?.id || ''}%2C%22first_name%22%3A%22${initData?.user?.first_name || ''}%22%2C%22last_name%22%3A%22${initData?.user?.last_name || ''}%22%2C%22username%22%3A%22${initData?.user?.username || ''}%22%2C%22language_code%22%3A%22${initData?.user?.language_code || ''}%22%2C%22is_premium%22%3A${!!initData?.user?.is_premium}%7D` +
-      `&auth_date=${initData.auth_date}` +
-      `&hash=${initData?.hash}`;
-      
+    // const initData = {"query_id":"AAHYMohKAAAAANgyiErugAQg","user":{"id":1250439896,"first_name":"Austin","last_name":"Vu","username":"AusVu1308","language_code":"en","allows_write_to_pm":true},"auth_date":"1709304003","hash":"db081850cd624efaf97624a8d1ca171830e9fb6053035c4031233a6b17a97680"}
+
+    let initDataQueryString = objectToQueryString(initData)
+    
+
+    // console.log('initDataQueryString: ', initDataQueryString)
+
     setInitDataQuery(initDataQueryString);
 
     // console.log('initDataQueryString: ', initDataQueryString)
 
     validate(initDataQueryString, secretToken);
+    // validateInitDataFromTelePlugin(initDataQueryString, secretToken, {expiresIn: 0});
+    console.log('Successfully !!!')
+
+    setValidateErr({message: 'None ERR - PASSED!!!'})
 
     return true;
    } catch (error) {
@@ -101,6 +108,110 @@ function App() {
      setValidateErr(error)
      return false;
    }
+  }
+
+  // function validateInitDataFromTelePlugin(
+  //   sp: string | URLSearchParams,
+  //   token: string,
+  //   options: ValidateOptions = {},
+  // ): void {
+  //   const searchParams = typeof sp === 'string' ? new URLSearchParams(sp) : sp;
+  
+  //   // Init data creation time.
+  //   let authDate = new Date(0);
+  
+  //   // Init data sign.
+  //   let hash = '';
+  
+  //   // All search params pairs presented as `k=v`.
+  //   const pairs: string[] = [];
+  
+  //   // Iterate over all key-value pairs of parsed parameters and find required
+  //   // parameters.
+  //   searchParams.forEach((value, key) => {
+  //     if (key === 'hash') {
+  //       hash = value;
+  //       return;
+  //     }
+  
+  //     if (key === 'auth_date') {
+  //       const authDateNum = parseInt(value, 10);
+  
+  //       if (Number.isNaN(authDateNum)) {
+  //         throw new TypeError('"auth_date" should present integer');
+  //       }
+  //       authDate = new Date(authDateNum * 1000);
+  //     }
+  
+  //     // Append new pair.
+  //     pairs.push(`${key}=${value}`);
+  //   });
+  
+  //   // Hash and auth date always required.
+  //   if (hash.length === 0) {
+  //     throw new Error('"hash" is empty or not found');
+  //   }
+  
+  //   if (authDate.getTime() === 0) {
+  //     throw new Error('"auth_date" is empty or not found');
+  //   }
+  
+  //   // In case, expiration time passed, we do additional parameters check.
+  //   const { expiresIn = 86400 } = options;
+  
+  //   if (expiresIn > 0) {
+  //     // Check if init data expired.
+  //     if (authDate.getTime() + expiresIn * 1000 < new Date().getTime()) {
+  //       throw new Error('Init data expired');
+  //     }
+  //   }
+  
+  //   // According to docs, we sort all the pairs in alphabetical order.
+  //   pairs.sort();
+  
+  //   // Compute sign.
+  //   const computedHash = createHmac(
+  //     'sha256',
+  //     createHmac('sha256', 'WebAppData').update(token).digest(),
+  //   )
+  //     .update(pairs.join('\n'))
+  //     .digest()
+  //     .toString('hex');
+  
+  //   // In case, our sign is not equal to found one, we should throw an error.
+  //   if (computedHash !== hash) {
+  //     throw new Error('Signature is invalid');
+  //   }
+  // }
+
+  function objectToQueryString(obj: any) {
+    // for (let key of Object.keys(obj)) {
+    //   console.log('key: ', key);
+
+    //   if (!initDataQueryString) {
+    //     initDataQueryString = `${key}=${(obj as any)[key]}`
+    //     continue;
+    //   }
+
+    //   if(key == 'user') {
+    //     initDataQueryString = initDataQueryString.concat(`&${key}=${encodeURIComponent(JSON.stringify((obj as any)[key]))}`)
+    //   } else {
+    //     initDataQueryString = initDataQueryString.concat(`&${key}=${(obj as any)[key]}`)
+    //   }
+    // }
+    
+    const keyValuePairs = [];
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const value = obj[key];
+        if (typeof(value) == 'object') {
+          keyValuePairs.push(`${encodeURIComponent(key)}=${encodeURIComponent(JSON.stringify(value))}`);
+        } else {
+          keyValuePairs.push(`${encodeURIComponent(key)}=${value}`);
+        }
+      }
+    }
+    return keyValuePairs.join('&');
   }
 
   return (
@@ -129,7 +240,11 @@ function App() {
           <label>Init Data Query: {`${initDataQuery}`}</label>
         </p>
         <p>
-          <label>ERR Validation - Init Data: {`${JSON.stringify(validateErr)} - ${validateErr?.message}`}</label>
+          <br />
+          <label>ERR Validation - Init Data: {`${JSON.stringify(validateErr || '...')}`}</label>
+          <br />
+          <label>{` ERROR MSG ${validateErr?.message || '...'}`}</label>
+          <br />
         </p>
         <p>
           <label>All Ref Code: {allRefCode}</label>
