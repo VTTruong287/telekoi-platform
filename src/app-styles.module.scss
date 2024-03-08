@@ -1,0 +1,212 @@
+@import "./app/styles/_variables.scss";
+
+label {
+  font-family: Robo;
+}
+
+.body {
+  display: flex;
+  height: calc(100% - 64px - 64px);
+  padding: 1rem;
+  flex-direction: column;
+
+  .claim-quests {
+    height: 100%;
+    border: 2px solid $border_color_claim_quests_1;
+    background-color: $bg_1;
+    box-shadow: 0px 3px 3px $border_color_claim_quests_1 !important;
+  }
+
+  .claim-chests {
+    height: 5rem;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .quest-center-title {
+    display: flex;
+    height: 10rem;
+    background: $bg_quest_title;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    align-items: center;
+    justify-content: center;
+
+    .quest-center-left-area {
+      width: 60%;
+      padding-left: 2rem;
+
+      .title {
+        color: $text_color_2;
+        font-size: 24px;
+      }
+
+      .description {
+        color: $text_color_2;
+        font-size: 11px;
+      }
+    }
+    .quest-center-right-area {
+      width: 40%;
+      display: flex;
+      justify-content: center;
+      padding-right: 1rem;
+  
+      img {
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.chest-btn {
+  height: 5rem !important;
+  width: 5rem !important;
+  padding: 0.5rem;
+  background-color: $bg_1 !important;
+  border-width: 0px !important;
+}
+
+.chest-btn-open {
+  background-color: $bg_2 !important;
+  box-shadow: 0px 2px 2px $shadow_color_chest_btn_2 !important;
+}
+
+.chest-btn-normal {
+  box-shadow: 0px 2px 2px $shadow_color_chest_btn_1 !important;
+}
+
+.chest-btn-next {
+  box-shadow: none !important;
+  border: 2px dashed $border_color_chest_btn_next_1 !important;
+}
+
+.chest-title-area {
+  display: flex;
+}
+
+.next-chest-title-area {
+  display: flex;
+  label {
+    width: 5rem;
+  }
+}
+
+.quest-tabs {
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  align-items: flex-start !important;
+
+  .quest-item {
+    border: 2px solid $border_color_quest_item_1;
+    
+    .quest-item-title{
+      padding: 0.3rem 1rem;
+      background-color: $bg_quest_item_title;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      
+      label {
+        font-size: 14px;
+        color: $text_color_3;
+        ;
+      }
+    }
+
+    .quest-item-progress {
+      padding: 0rem 1rem;
+      position: relative;
+
+      progress {
+        height: 11px;
+        color: #1CB0F6;
+      }
+
+      .counter {
+        position: absolute;
+        top: 4px;
+        left: calc(50% - 3px);
+        font-size: 11px;
+      }
+    }
+
+    .quest-item-info-n-actions {
+      padding: 0.5rem 1rem;
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .info {
+        text-align: left;
+        span {
+          font-size: 11px;
+        }
+
+        img {
+          margin: 0 4px
+        }
+
+        .info-indicator {
+          // #1CB0F6
+          margin: 0 2px;
+
+          .info-indicator-bottom {
+            bottom: 3px !important;
+            right: 7px;
+          }
+        }
+      }
+
+      .action {
+        text-align: right;
+
+        button {
+          background-color: #1CB0F6 !important;
+          color: #ffffff !important;
+          border: 2px solid #1896D1 !important;
+          box-shadow: 0px 2px 2px #1995D1 !important;
+          min-height: 26px !important;
+          height: 26px !important;
+        }
+      }
+    }
+  }
+}
+
+.scoll-view-container {
+  display: flex;
+  width: 100%;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  flex-direction: column;
+  padding: 0.5rem;
+  background-color: $bg_1;
+}
+
+.scroll-view {
+  // width: 100%;
+  // height: 100%;
+  flex: 1;
+  overflow: auto;
+  background-color: $bg_1;
+}
+
+.bottom-nav {
+  background-color: $bg_1 !important;
+
+  button {
+    background-color: $bg_1 !important;
+  }
+
+  span {
+    font-size: 14px;
+    color: #999999;
+    font-weight: 600;
+  }
+}
+
+.navbar {
+  background-color: $bg_1 !important;
+  border-bottom: 2px solid #E5E5E5;
+}
