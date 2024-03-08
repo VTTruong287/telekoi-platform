@@ -27,7 +27,7 @@ label {
 
   .quest-center-title {
     display: flex;
-    height: 10rem;
+    height: 8.5rem;
     background: $bg_quest_title;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
@@ -97,6 +97,10 @@ label {
 .quest-tabs {
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   align-items: flex-start !important;
+
+  input {
+    height: 3rem;
+  }
 
   .quest-item {
     border: 2px solid $border_color_quest_item_1;
