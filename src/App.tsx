@@ -51,6 +51,44 @@ const ClaimChestArea = (props: any) => {
   );
 };
 
+const QuestItem = (props: any) => {
+  return (
+    <div className={["card", styles["quest-item"]].join(" ")}>
+      {/* QUEST TITLE */}
+      <div className={[styles["quest-item-title"]].join(" ")}>
+        <label>Login Bonus</label>
+      </div>
+      {/* QUEST PROGESS */}
+      <div className={[styles["quest-item-progress"]].join(" ")}>
+        <progress className="progress progress-info w-100" value="100" max="100"></progress>
+        <span className={[styles["counter"]].join(" ")}>1/1</span>
+      </div>
+      <div className={[styles["quest-item-info-n-actions"]].join(" ")}>
+        <div className={[styles["info"]].join(" ")}>
+          {/* COIN INFO */}
+          <div className={["indicator", styles["info-indicator"]].join(" ")}>
+            <div className={["indicator-item indicator-bottom", styles["info-indicator-bottom"]].join(" ")}>
+              <span>x10</span>
+            </div>
+            <img src={"/images/img/ticket.png"} alt="Suzume Ticket" width={25} height={25} />
+          </div>
+          {/* TICKET INFO */}
+          <div className={["indicator", styles["info-indicator"]].join(" ")}>
+            <div className={["indicator-item indicator-bottom", styles["info-indicator-bottom"]].join(" ")}>
+              <span>x10</span>
+            </div>
+            <img src={"/images/img/coin.png"} alt="Suzume Coin" width={25} height={25} />
+          </div>
+        </div>
+        {/* CLAIM BUTTON */}
+        <div className={[styles["action"]].join(" ")}>
+          <button className="btn">Claim</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 function App() {
   return (
     <>
@@ -71,7 +109,7 @@ function App() {
       </div>
 
       <div className={styles["body"]}>
-        <div className={[styles["claim-quests"], "card bg-base-100 shadow-xl"].join(" ")}>
+        <div className={[styles["claim-quests"], "card bg-base-100"].join(" ")}>
           <div className={styles["quest-center-title"]}>
             <div className={styles["quest-center-left-area"]}>
               <h4 className={styles["title"]}>Quest Center</h4>
@@ -88,39 +126,13 @@ function App() {
               <input type="radio" name="quests_tab" role="tab" className="tab" aria-label="Daily" checked />
               <div role="tabpanel" className={["tab-content", styles["scoll-view-container"]].join(" ")}>
                 <div className={[styles["scroll-view"]].join(" ")}>
-                  <div className={["card", styles["quest-item"]].join(" ")}>
-                    {/* QUEST TITLE */}
-                    <div className={[styles["quest-item-title"]].join(" ")}>
-                      <label>Login Bonus</label>
-                    </div>
-                    {/* QUEST PROGESS */}
-                    <div className={[styles["quest-item-progress"]].join(" ")}>
-                      <progress className="progress progress-info w-100" value="100" max="100"></progress>
-                      <span className={[styles["counter"]].join(" ")}>1/1</span>
-                    </div>
-                    <div className={[styles["quest-item-info-n-actions"]].join(" ")}>
-                      <div className={[styles["info"]].join(" ")}>
-                        {/* COIN INFO */}
-                        <div className={["indicator", styles["info-indicator"]].join(" ")}>
-                          <div className={["indicator-item indicator-bottom", styles["info-indicator-bottom"]].join(" ")}>
-                            <span>x10</span>
-                          </div>
-                          <img src={"/images/img/ticket.png"} alt="Suzume Ticket" width={25} height={25} />
-                        </div>
-                        {/* TICKET INFO */}
-                        <div className={["indicator", styles["info-indicator"]].join(" ")}>
-                        <div className={["indicator-item indicator-bottom", styles["info-indicator-bottom"]].join(" ")}>
-                            <span>x10</span>
-                          </div>
-                          <img src={"/images/img/coin.png"} alt="Suzume Coin" width={25} height={25} />
-                        </div>
-                      </div>
-                      {/* CLAIM BUTTON */}
-                      <div className={[styles["action"]].join(" ")}>
-                        <button className="btn">Claim</button>
-                      </div>
-                    </div>
-                  </div>
+                  <QuestItem />
+
+                  <QuestItem />
+
+                  <QuestItem />
+
+                  <QuestItem />
                 </div>
               </div>
 
