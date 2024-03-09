@@ -1,4 +1,5 @@
 // import "./App.css";
+import React from 'react';
 
 import styles from "./app-styles.module.scss";
 
@@ -101,7 +102,7 @@ const QuestItem = (props: any) => {
 
 const DailyQuestTab = (props: any) => {
   const {} = props
-  
+
   return (
     <div role="tabpanel" className={["tab-content", styles["scoll-view-container"]].join(" ")}>
       <div className={[styles["scroll-view"]].join(" ")}>
@@ -111,13 +112,19 @@ const DailyQuestTab = (props: any) => {
 
         <QuestItem />
 
-        <QuestItem />
+        {/* <QuestItem /> */}
       </div>
     </div>
   );
 };
 
 function App() {
+  const [isInit, setIsInit] = React.useState(true)
+
+  const chooseTab = () => {
+    isInit && setIsInit(false)
+  }
+
   return (
     <>
       <div className={["navbar bg-base-100", styles["navbar"]].join(" ")}>
@@ -151,19 +158,19 @@ function App() {
           {/* <div className="card-body p-0"> */}
             <div role="tablist" className={["tabs tabs-bordered", styles["quest-tabs"]].join(" ")}>
               {/* DAILY TAB */}
-              <input type="radio" name="quests_tab" role="tab" className="tab" aria-label="Daily"/>
+              <input type="radio" onClick={() => {setIsInit(true)}} name="quests_tab" role="tab" className="tab" aria-label="Daily" checked={isInit}/>
               <DailyQuestTab />
 
               {/* WEEKLY TAB */}
-              <input type="radio" name="quests_tab" role="tab" className="tab" aria-label="Weekly" />
+              <input type="radio" onClick={chooseTab} name="quests_tab" role="tab" className="tab" aria-label="Weekly" />
               <div role="tabpanel" className="tab-content p-10">Tab content 2</div>
 
               {/* ACHIVEMENTS TAB */}
-              <input type="radio" name="quests_tab" role="tab" className="tab" aria-label="Achivements" />
+              <input type="radio" onClick={chooseTab} name="quests_tab" role="tab" className="tab" aria-label="Achivements" />
               <div role="tabpanel" className="tab-content p-10">Tab content 3</div>
 
               {/* FEATURING TAB */}
-              <input type="radio" name="quests_tab" role="tab" className="tab" aria-label="Featuring"/>
+              <input type="radio" onClick={chooseTab} name="quests_tab" role="tab" className="tab" aria-label="Featuring"/>
               <div role="tabpanel" className="tab-content p-10">Tab content 4</div>
             </div>
           </div>
