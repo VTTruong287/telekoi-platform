@@ -3,7 +3,7 @@
 import styles from "./app-styles.module.scss";
 
 const ClaimChestButton = (props: any) => {
-  const { isOpenChest = false, isNextChest = false, children } = props;
+  const { isOpenChest = false, isNextChest = false, children, toolTipContent = "" } = props;
 
   return (
     <div
@@ -20,14 +20,22 @@ const ClaimChestButton = (props: any) => {
       ) : (
         <img src="/images/svg/chest.svg" alt="" height={40} width={40} />
       )}
+
+      {!!toolTipContent && 
+        <div className={[styles["tooltiptext"]].join(" ")}>
+          <span>{toolTipContent}</span>
+        </div>
+      }
     </div>
   );
 };
 
 const ClaimChestArea = (props: any) => {
+  const {} = props
+
   return (
     <div className={styles["claim-chests"]}>
-      <ClaimChestButton isOpenChest={true}>
+      <ClaimChestButton isOpenChest={true} toolTipContent={"Open"}>
         <label>Unlocked</label>
       </ClaimChestButton>
       <ClaimChestButton>
@@ -36,7 +44,7 @@ const ClaimChestArea = (props: any) => {
           <label>9:30</label>
         </div>
       </ClaimChestButton>
-      <ClaimChestButton>
+      <ClaimChestButton toolTipContent={"Unlock"}>
         <div className={styles["chest-title-area"]}>
           <img src="/images/svg/time.svg" alt="" height={15} width={15} />
           <label>10m</label>
@@ -52,6 +60,8 @@ const ClaimChestArea = (props: any) => {
 };
 
 const QuestItem = (props: any) => {
+  const {} = props
+
   return (
     <div className={["card", styles["quest-item"]].join(" ")}>
       {/* QUEST TITLE */}
@@ -84,6 +94,24 @@ const QuestItem = (props: any) => {
         <div className={[styles["action"]].join(" ")}>
           <button className="btn">Claim</button>
         </div>
+      </div>
+    </div>
+  );
+};
+
+const DailyQuestTab = (props: any) => {
+  const {} = props
+  
+  return (
+    <div role="tabpanel" className={["tab-content", styles["scoll-view-container"]].join(" ")}>
+      <div className={[styles["scroll-view"]].join(" ")}>
+        <QuestItem />
+
+        <QuestItem />
+
+        <QuestItem />
+
+        <QuestItem />
       </div>
     </div>
   );
@@ -123,18 +151,8 @@ function App() {
           {/* <div className="card-body p-0"> */}
             <div role="tablist" className={["tabs tabs-bordered", styles["quest-tabs"]].join(" ")}>
               {/* DAILY TAB */}
-              <input type="radio" name="quests_tab" role="tab" className="tab" aria-label="Daily" checked />
-              <div role="tabpanel" className={["tab-content", styles["scoll-view-container"]].join(" ")}>
-                <div className={[styles["scroll-view"]].join(" ")}>
-                  <QuestItem />
-
-                  <QuestItem />
-
-                  <QuestItem />
-
-                  <QuestItem />
-                </div>
-              </div>
+              <input type="radio" name="quests_tab" role="tab" className="tab" aria-label="Daily"/>
+              <DailyQuestTab />
 
               {/* WEEKLY TAB */}
               <input type="radio" name="quests_tab" role="tab" className="tab" aria-label="Weekly" />
@@ -145,7 +163,7 @@ function App() {
               <div role="tabpanel" className="tab-content p-10">Tab content 3</div>
 
               {/* FEATURING TAB */}
-              <input type="radio" name="quests_tab" role="tab" className="tab" aria-label="Featuring" />
+              <input type="radio" name="quests_tab" role="tab" className="tab" aria-label="Featuring"/>
               <div role="tabpanel" className="tab-content p-10">Tab content 4</div>
             </div>
           </div>
