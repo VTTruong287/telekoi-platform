@@ -9,6 +9,7 @@ label {
   height: calc(100% - 64px - 64px);
   padding: 1rem;
   flex-direction: column;
+  overflow: auto;
 
   .claim-quests {
     height: 100%;
@@ -20,7 +21,7 @@ label {
 
   .claim-chests {
     height: 6rem;
-    margin-top: 0.5rem;
+    margin-top: 2.5rem;
     display: flex;
     justify-content: space-between;
   }
@@ -132,7 +133,7 @@ label {
 }
 
 .quest-tabs {
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(60px, 150px));
   align-items: flex-start !important;
 
   input {

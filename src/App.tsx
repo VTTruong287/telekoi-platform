@@ -111,7 +111,7 @@ const DailyQuestTab = (props: any) => {
 
         <QuestItem />
 
-        <QuestItem />
+        {/* <QuestItem /> */}
 
         {/* <QuestItem /> */}
       </div>
@@ -179,6 +179,8 @@ function App() {
 
         <ClaimChestArea />
       </div>
+
+      <div style={{height: '64px'}}></div>
 
       <div className={["btm-nav", styles["bottom-nav"]].join(" ")}>
         <button className="active">
