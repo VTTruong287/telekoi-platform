@@ -2,6 +2,7 @@
 import React from 'react';
 
 import styles from "./app-styles.module.scss";
+import { CDN_URL } from './common/const';
 
 const ClaimChestButton = (props: any) => {
   const { isOpenChest = false, isNextChest = false, children, toolTipContent = "" } = props;
@@ -17,9 +18,9 @@ const ClaimChestButton = (props: any) => {
     >
       {children}
       {isNextChest ? (
-        <img src="/images/svg/next-chest.svg" alt="" height={40} width={40} />
+        <img src={`${CDN_URL}/images/svg/next-chest.svg`} alt="" height={40} width={40} />
       ) : (
-        <img src="/images/svg/chest.svg" alt="" height={40} width={40} />
+        <img src={`${CDN_URL}/images/svg/chest.svg`} alt="" height={40} width={40} />
       )}
 
       {!!toolTipContent && 
@@ -41,13 +42,13 @@ const ClaimChestArea = (props: any) => {
       </ClaimChestButton>
       <ClaimChestButton>
         <div className={styles["chest-title-area"]}>
-          <img src="/images/svg/time.svg" alt="" height={15} width={15} />
+          <img src={`${CDN_URL}/images/svg/time.svg`} alt="" height={15} width={15} />
           <label>9:30</label>
         </div>
       </ClaimChestButton>
       <ClaimChestButton toolTipContent={"Unlock"}>
         <div className={styles["chest-title-area"]}>
-          <img src="/images/svg/time.svg" alt="" height={15} width={15} />
+          <img src={`${CDN_URL}/images/svg/time.svg`} alt="" height={15} width={15} />
           <label>10m</label>
         </div>
       </ClaimChestButton>
@@ -81,14 +82,14 @@ const QuestItem = (props: any) => {
             <div className={["indicator-item indicator-bottom", styles["info-indicator-bottom"]].join(" ")}>
               <span>x10</span>
             </div>
-            <img src={"/images/img/ticket.png"} alt="Suzume Ticket" width={25} height={25} />
+            <img src={`${CDN_URL}/images/img/ticket.png`} alt="Suzume Ticket" width={25} height={25} />
           </div>
           {/* TICKET INFO */}
           <div className={["indicator", styles["info-indicator"]].join(" ")}>
             <div className={["indicator-item indicator-bottom", styles["info-indicator-bottom"]].join(" ")}>
               <span>x10</span>
             </div>
-            <img src={"/images/img/coin.png"} alt="Suzume Coin" width={25} height={25} />
+            <img src={`${CDN_URL}/images/img/coin.png`} alt="Suzume Coin" width={25} height={25} />
           </div>
         </div>
         {/* CLAIM BUTTON */}
@@ -130,15 +131,15 @@ function App() {
       <div className={["navbar bg-base-100", styles["navbar"]].join(" ")}>
         <div className="navbar-start">
           <button className="btn btn-square btn-ghost">
-            <img src={"/images/svg/close.svg"} alt="Close" width={40} height={40} />
+            <img src={`${CDN_URL}/images/svg/close.svg`} alt="Close" width={40} height={40} />
           </button>
         </div>
         <div className="navbar-center">
-          <img src={"/images/svg/suzume-logo.svg"} alt="Suzume Logo" width={30} height={30} />
+          <img src={`${CDN_URL}/images/svg/suzume-logo.svg`} alt="Suzume Logo" width={30} height={30} />
           <label className="text-xl ml-1">suzume</label>
         </div>
         <div className="navbar-end">
-          <img src={"/images/img/coin.png"} alt="Coin" width={20} height={20} />
+          <img src={`${CDN_URL}/images/img/coin.png`} alt="Coin" width={20} height={20} />
           <label className="text-l">123</label>
         </div>
       </div>
@@ -151,7 +152,7 @@ function App() {
               <span className={styles["description"]}>Complete quests and earn rewards Quests refresh every day</span>
             </div>
             <div className={styles["quest-center-right-area"]}>
-              <img src={"/images/svg/cards-chest.svg"} alt="Card" width={110} height={110} />
+              <img src={`${CDN_URL}/images/svg/cards-chest.svg`} alt="Card" width={110} height={110} />
             </div>
           </div>
 
@@ -181,11 +182,11 @@ function App() {
 
       <div className={["btm-nav", styles["bottom-nav"]].join(" ")}>
         <button className="active">
-        <img src={"/images/svg/home.svg"} alt="Close" width={25} height={25} />
+        <img src={`${CDN_URL}/images/svg/home.svg`} alt="Close" width={25} height={25} />
           <span className="btm-nav-label">HOME</span>
         </button>
         <button>
-        <img src={"/images/svg/wallet.svg"} alt="Close" width={25} height={25} />
+        <img src={`${CDN_URL}/images/svg/wallet.svg`} alt="Close" width={25} height={25} />
           <span className="btm-nav-label">STATICS</span>
         </button>
       </div>
