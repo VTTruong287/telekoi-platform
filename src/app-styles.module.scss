@@ -19,13 +19,6 @@ label {
     box-shadow: 0px 3px 3px $border_color_claim_quests_1 !important;
   }
 
-  .claim-chests {
-    height: 6rem;
-    margin-top: 2.5rem;
-    display: flex;
-    justify-content: space-between;
-  }
-
   .quest-center-title {
     display: flex;
     height: 8.5rem;
@@ -62,76 +55,6 @@ label {
   }
 }
 
-.chest-btn {
-  height: 5.5rem !important;
-  width: 5rem !important;
-  padding: 0.5rem;
-  background-color: $bg_1 !important;
-  border-width: 0px !important;
-  position: relative;
-}
-
-/* Tooltip text */
-.tooltiptext {
-  background-color: #1CB0F6;
-  color: #fff;
-  text-align: center;
-  padding: 2px 0;
-  border-radius: 6px;
- 
-  /* Position the tooltip text - see examples below! */
-  position: absolute;
-  z-index: 1;
-
-  width: 60px;
-  bottom: 2px;
-  left: 10px;
-
-  font-size: 12px;
-  font-weight: 700;
-
-  span {
-    color: #fff;
-  }
-
-  &:after {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: 26px;
-    border-width: 0 4px 8px;
-    border-style: solid;
-    border-color: #1CB0F6 transparent;
-    display: block;
-    width: 0;
-  }
-}
-
-.chest-btn-open {
-  background-color: $bg_2 !important;
-  box-shadow: 0px 2px 2px $shadow_color_chest_btn_2 !important;
-}
-
-.chest-btn-normal {
-  box-shadow: 0px 2px 2px $shadow_color_chest_btn_1 !important;
-}
-
-.chest-btn-next {
-  box-shadow: none !important;
-  border: 2px dashed $border_color_chest_btn_next_1 !important;
-}
-
-.chest-title-area {
-  display: flex;
-}
-
-.next-chest-title-area {
-  display: flex;
-  label {
-    width: 5rem;
-  }
-}
-
 .quest-tabs {
   grid-template-columns: repeat(auto-fill, minmax(60px, 150px));
   align-items: flex-start !important;
@@ -139,103 +62,6 @@ label {
   input {
     height: 3rem;
   }
-
-  .quest-item {
-    border: 2px solid $border_color_quest_item_1;
-    margin: 8px 0;
-    
-    .quest-item-title{
-      padding: 0.3rem 1rem;
-      background-color: $bg_quest_item_title;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-      
-      label {
-        font-size: 14px;
-        color: $text_color_3;
-        ;
-      }
-    }
-
-    .quest-item-progress {
-      padding: 0rem 1rem;
-      position: relative;
-
-      progress {
-        height: 11px;
-        color: #1CB0F6;
-      }
-
-      .counter {
-        position: absolute;
-        top: 4px;
-        left: calc(50% - 3px);
-        font-size: 11px;
-      }
-    }
-
-    .quest-item-info-n-actions {
-      padding: 0.5rem 1rem;
-      display: flex;
-      width: 100%;
-      flex-direction: row;
-      justify-content: space-between;
-
-      .info {
-        text-align: left;
-        span {
-          font-size: 11px;
-        }
-
-        img {
-          margin: 0 4px
-        }
-
-        .info-indicator {
-          // #1CB0F6
-          margin: 0 2px;
-
-          .info-indicator-bottom {
-            bottom: 3px !important;
-            right: 7px;
-          }
-        }
-      }
-
-      .action {
-        text-align: right;
-
-        button {
-          background-color: #1CB0F6 !important;
-          color: #ffffff !important;
-          border: 2px solid #1896D1 !important;
-          box-shadow: 0px 2px 2px #1995D1 !important;
-          min-height: 26px !important;
-          height: 26px !important;
-        }
-      }
-    }
-  }
-}
-
-.scoll-view-container {
-  display: flex;
-  width: 100%;
-  border: 1px solid #ccc;
-  overflow: hidden;
-  flex-direction: column;
-  padding: 0.5rem;
-  background-color: $bg_1;
-  border-bottom-left-radius: 18px;
-  border-bottom-right-radius: 18px;
-}
-
-.scroll-view {
-  // width: 100%;
-  // height: 100%;
-  flex: 1;
-  overflow: auto;
-  background-color: $bg_1;
 }
 
 .bottom-nav {

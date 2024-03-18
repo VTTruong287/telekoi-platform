@@ -1,0 +1,79 @@
+@import "../../styles/_variables.scss";
+
+.quest-item {
+  border: 2px solid $border_color_quest_item_1;
+  margin: 8px 0;
+
+  .quest-item-title {
+    padding: 0.3rem 1rem;
+    background-color: $bg_quest_item_title;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+
+    label {
+      font-size: 14px;
+      color: $text_color_3;
+      ;
+    }
+  }
+
+  .quest-item-progress {
+    padding: 0rem 1rem;
+    position: relative;
+
+    progress {
+      height: 11px;
+      color: #1CB0F6;
+    }
+
+    .counter {
+      position: absolute;
+      top: 4px;
+      left: calc(50% - 3px);
+      font-size: 11px;
+    }
+  }
+
+  .quest-item-info-n-actions {
+    padding: 0.5rem 1rem;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .info {
+      text-align: left;
+
+      span {
+        font-size: 11px;
+      }
+
+      img {
+        margin: 0 4px
+      }
+
+      .info-indicator {
+        // #1CB0F6
+        margin: 0 2px;
+
+        .info-indicator-bottom {
+          bottom: 3px !important;
+          right: 7px;
+        }
+      }
+    }
+
+    .action {
+      text-align: right;
+
+      button {
+        background-color: #1CB0F6 !important;
+        color: #ffffff !important;
+        border: 2px solid #1896D1 !important;
+        box-shadow: 0px 2px 2px #1995D1 !important;
+        min-height: 26px !important;
+        height: 26px !important;
+      }
+    }
+  }
+}

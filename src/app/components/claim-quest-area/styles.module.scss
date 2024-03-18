@@ -1,0 +1,19 @@
+@import "../../styles/_variables.scss";
+
+.claim-chests {
+  height: 6rem;
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chest-title-area {
+  display: flex;
+}
+
+.next-chest-title-area {
+  display: flex;
+  label {
+    width: 5rem;
+  }
+}

@@ -1,0 +1,60 @@
+@import "../../styles/_variables.scss";
+
+.chest-btn {
+  height: 5.5rem !important;
+  width: 5rem !important;
+  padding: 0.5rem;
+  background-color: $bg_1 !important;
+  border-width: 0px !important;
+  position: relative;
+  
+  &.chest-btn-next {
+    box-shadow: none !important;
+    border: 2px dashed $border_color_chest_btn_next_1 !important;
+  }
+
+  &.chest-btn-open {
+    background-color: $bg_2 !important;
+    box-shadow: 0px 2px 2px $shadow_color_chest_btn_2 !important;
+  }
+}
+
+.chest-btn-normal {
+  box-shadow: 0px 2px 2px $shadow_color_chest_btn_1 !important;
+}
+
+/* Tooltip text */
+.tooltiptext {
+  background-color: #1CB0F6;
+  color: #fff;
+  text-align: center;
+  padding: 2px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+
+  width: 60px;
+  bottom: 2px;
+  left: 10px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  span {
+    color: #fff;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 26px;
+    border-width: 0 4px 8px;
+    border-style: solid;
+    border-color: #1CB0F6 transparent;
+    display: block;
+    width: 0;
+  }
+}

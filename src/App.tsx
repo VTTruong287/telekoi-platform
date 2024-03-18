@@ -3,121 +3,7 @@ import React from 'react';
 
 import styles from "./app-styles.module.scss";
 import { CDN_URL } from './common/const';
-
-const ClaimChestButton = (props: any) => {
-  const { isOpenChest = false, isNextChest = false, children, toolTipContent = "" } = props;
-
-  return (
-    <div
-      className={[
-        "btn",
-        styles["chest-btn"],
-        isOpenChest ? styles["chest-btn-open"] : styles["chest-btn-normal"],
-        isNextChest ? styles["chest-btn-next"] : "",
-      ].join(" ")}
-    >
-      {children}
-      {isNextChest ? (
-        <img src={`${CDN_URL}/images/svg/next-chest.svg`} alt="" height={40} width={40} />
-      ) : (
-        <img src={`${CDN_URL}/images/svg/chest.svg`} alt="" height={40} width={40} />
-      )}
-
-      {!!toolTipContent && 
-        <div className={[styles["tooltiptext"]].join(" ")}>
-          <span>{toolTipContent}</span>
-        </div>
-      }
-    </div>
-  );
-};
-
-const ClaimChestArea = (props: any) => {
-  const {} = props
-
-  return (
-    <div className={styles["claim-chests"]}>
-      <ClaimChestButton isOpenChest={true} toolTipContent={"Open"}>
-        <label>Unlocked</label>
-      </ClaimChestButton>
-      <ClaimChestButton>
-        <div className={styles["chest-title-area"]}>
-          <img src={`${CDN_URL}/images/svg/time.svg`} alt="" height={15} width={15} />
-          <label>9:30</label>
-        </div>
-      </ClaimChestButton>
-      <ClaimChestButton toolTipContent={"Unlock"}>
-        <div className={styles["chest-title-area"]}>
-          <img src={`${CDN_URL}/images/svg/time.svg`} alt="" height={15} width={15} />
-          <label>10m</label>
-        </div>
-      </ClaimChestButton>
-      <ClaimChestButton isNextChest={true}>
-        <div className={styles["next-chest-title-area"]}>
-          <label>Next chest</label>
-        </div>
-      </ClaimChestButton>
-    </div>
-  );
-};
-
-const QuestItem = (props: any) => {
-  const {} = props
-
-  return (
-    <div className={["card", styles["quest-item"]].join(" ")}>
-      {/* QUEST TITLE */}
-      <div className={[styles["quest-item-title"]].join(" ")}>
-        <label>Login Bonus</label>
-      </div>
-      {/* QUEST PROGESS */}
-      <div className={[styles["quest-item-progress"]].join(" ")}>
-        <progress className="progress progress-info w-100" value="100" max="100"></progress>
-        <span className={[styles["counter"]].join(" ")}>1/1</span>
-      </div>
-      <div className={[styles["quest-item-info-n-actions"]].join(" ")}>
-        <div className={[styles["info"]].join(" ")}>
-          {/* COIN INFO */}
-          <div className={["indicator", styles["info-indicator"]].join(" ")}>
-            <div className={["indicator-item indicator-bottom", styles["info-indicator-bottom"]].join(" ")}>
-              <span>x10</span>
-            </div>
-            <img src={`${CDN_URL}/images/img/ticket.png`} alt="Suzume Ticket" width={25} height={25} />
-          </div>
-          {/* TICKET INFO */}
-          <div className={["indicator", styles["info-indicator"]].join(" ")}>
-            <div className={["indicator-item indicator-bottom", styles["info-indicator-bottom"]].join(" ")}>
-              <span>x10</span>
-            </div>
-            <img src={`${CDN_URL}/images/img/coin.png`} alt="Suzume Coin" width={25} height={25} />
-          </div>
-        </div>
-        {/* CLAIM BUTTON */}
-        <div className={[styles["action"]].join(" ")}>
-          <button className="btn">Claim</button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const DailyQuestTab = (props: any) => {
-  const {} = props
-
-  return (
-    <div role="tabpanel" className={["tab-content", styles["scoll-view-container"]].join(" ")}>
-      <div className={[styles["scroll-view"]].join(" ")}>
-        <QuestItem />
-
-        <QuestItem />
-
-        {/* <QuestItem /> */}
-
-        {/* <QuestItem /> */}
-      </div>
-    </div>
-  );
-};
+import { ClaimChestArea, DailyQuestTab } from "./app/components";
 
 function App() {
   const [isInit, setIsInit] = React.useState(true)
@@ -156,26 +42,24 @@ function App() {
             </div>
           </div>
 
-          {/* <div className="card-body p-0"> */}
-            <div role="tablist" className={["tabs tabs-bordered", styles["quest-tabs"]].join(" ")}>
-              {/* DAILY TAB */}
-              <input type="radio" onClick={() => {setIsInit(true)}} name="quests_tab" role="tab" className="tab" aria-label="Daily" checked={isInit}/>
-              <DailyQuestTab />
+          <div role="tablist" className={["tabs tabs-bordered", styles["quest-tabs"]].join(" ")}>
+            {/* DAILY TAB */}
+            <input type="radio" onClick={() => {setIsInit(true)}} name="quests_tab" role="tab" className="tab" aria-label="Daily" checked={isInit}/>
+            <DailyQuestTab />
 
-              {/* WEEKLY TAB */}
-              <input type="radio" onClick={chooseTab} name="quests_tab" role="tab" className="tab" aria-label="Weekly" />
-              <div role="tabpanel" className="tab-content p-10">Tab content 2</div>
+            {/* WEEKLY TAB */}
+            <input type="radio" onClick={chooseTab} name="quests_tab" role="tab" className="tab" aria-label="Weekly" />
+            <div role="tabpanel" className="tab-content p-10">Tab content 2</div>
 
-              {/* ACHIVEMENTS TAB */}
-              <input type="radio" onClick={chooseTab} name="quests_tab" role="tab" className="tab" aria-label="Achivements" />
-              <div role="tabpanel" className="tab-content p-10">Tab content 3</div>
+            {/* ACHIVEMENTS TAB */}
+            <input type="radio" onClick={chooseTab} name="quests_tab" role="tab" className="tab" aria-label="Achivements" />
+            <div role="tabpanel" className="tab-content p-10">Tab content 3</div>
 
-              {/* FEATURING TAB */}
-              <input type="radio" onClick={chooseTab} name="quests_tab" role="tab" className="tab" aria-label="Featuring"/>
-              <div role="tabpanel" className="tab-content p-10">Tab content 4</div>
-            </div>
+            {/* FEATURING TAB */}
+            <input type="radio" onClick={chooseTab} name="quests_tab" role="tab" className="tab" aria-label="Featuring"/>
+            <div role="tabpanel" className="tab-content p-10">Tab content 4</div>
           </div>
-        {/* </div> */}
+        </div>
 
         <ClaimChestArea />
       </div>
